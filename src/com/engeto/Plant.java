@@ -2,8 +2,11 @@ package com.engeto;
 
 import java.time.LocalDate;
 
-public class Plant {
+import java.time.LocalDate;
+import java.util.Comparator;
 
+
+public class Plant implements Comparable <Plant> {
     // ukol 1
 
     private String name;
@@ -76,13 +79,14 @@ public class Plant {
         this.planted = planted;
     }
 
+    // ukol 7
     public LocalDate getWatering(){
         return  Watering;
     }
 
     public void setWatering(LocalDate watering) throws PlantException {
         if (getWatering().isBefore(getPlanted())){
-           // throw new PlantException("plant first");
+            throw new PlantException("plant first");
         }
         else {
             this.Watering = watering;
@@ -98,12 +102,45 @@ public class Plant {
     // ukol 6
     public void setFrequenceOfWateringInDays(Integer frequenceOfWateringInDays) throws PlantException {
         if ( frequenceOfWateringInDays <= 0){
-           // throw new PlantException(getFrequenceOfWateringInDays() + "Chyba zalejvaní");
+            throw new PlantException(getFrequenceOfWateringInDays() + "Chyba zalejvaní");
         }
         else {
             this.frequenceOfWateringInDays = frequenceOfWateringInDays;
         }
     }
 
+    // ukol 4
 
+
+    public String getWateringInfo(){
+
+        return getName() + " " + getWatering() + " " + getFrequenceOfWateringInDays();
+    }
+
+
+    public String getAllDataForSave(){
+
+        return getName() + "\t" + getNotes() + "\t" + getFrequenceOfWateringInDays() + "\t" + getWatering()  + "\t" + getPlanted();
+    }
+
+
+    // ukol 17
+    @Override
+    public int compareTo(Plant o) {
+        return this.name.compareTo(o.name);
+
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Plant{" +
+                "name='" + name + '\'' +
+                ", notes='" + notes + '\'' +
+                ", planted=" + planted +
+                ", Watering=" + Watering +
+                ", frequenceOfWateringInDays=" + frequenceOfWateringInDays +
+                '}';
+    }
 }
