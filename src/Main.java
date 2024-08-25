@@ -31,5 +31,38 @@ public class Main {
         // 10.2
         fileUtils.exportToFile(allPlants, new File(fileToSave));
 
+        //ukol 18
+        Collections.sort(allPlants, new Comparator<Plant>() {
+            @Override
+            public int compare(Plant o1, Plant o2) {
+                String key1 = o1.getName();
+                String key2 = o2.getName();
+                return key1.compareTo(key2);
+            }
+        });
+
+        System.out.println("\n");
+
+        for (Plant plant : allPlants){
+            System.out.println(plant);
+        }
+
+        // ukol 19
+        Collections.sort(allPlants, new Comparator<Plant>() {
+            @Override
+            public int compare(Plant x1, Plant x2) {
+                int key1 = x1.getFrequenceOfWateringInDays();
+                int key2 = x2.getFrequenceOfWateringInDays();
+                return Integer.compare(key1, key2);
+            }
+        });
+
+
+        // ukol 20
+        for (Plant plant : allPlants){
+            System.out.println( "\n " + plant.getName() + ", zalivka " + plant.getFrequenceOfWateringInDays());
+
+        }
+
     }
 }
